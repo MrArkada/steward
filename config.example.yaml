@@ -1,0 +1,26 @@
+token: "СЮДА ТОКЕН"
+
+allowed_users:
+  - 12345678
+
+thresholds:
+  cpu_percent: 90
+  cpu_duration_min: 5
+  ram_percent: 85
+  disk_percent: 90
+
+quiet_hours:
+  enabled: false
+  start: "00:00"
+  end: "08:00"
+
+digest:
+  enabled: false
+  time: "09:00"
+
+paths:
+  state_file: "state.json"
+  log_file: "bot.log"
+  audit_file: "audit.log"
+
+geoip_enabled: true

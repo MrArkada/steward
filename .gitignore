@@ -1,0 +1,8 @@
+server-bot
+server-bot.exe
+config.yaml
+state.json
+state.json.tmp
+*.log
+*.bak
+/tmp

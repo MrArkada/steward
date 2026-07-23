@@ -1,0 +1,22 @@
+[Unit]
+Description=Steward — бот управления виртуалкой (Telegram)
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/serverbot
+ExecStart=/opt/serverbot/server-bot -config /opt/serverbot/config.yaml
+Restart=on-failure
+RestartSec=5
+MemoryMax=100M
+CPUQuota=25%
+NoNewPrivileges=true
+PrivateTmp=false
+LimitNOFILE=1024
+
+[Install]
+WantedBy=multi-user.target
