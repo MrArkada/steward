@@ -4,14 +4,14 @@ Telegram-бот для управления Linux-сервером. Написа
 long polling — веб-сервер, открытый порт и nginx ему не нужны, только
 исходящие HTTPS-запросы к API Telegram.
 
-Главное требование при написании — минимальное потребление ресурсов:
+Главная фишка — минимальное потребление ресурсов:
 в простое бот ест меньше 20 МБ RAM, метрики читает напрямую из /proc
 и /sys, не запуская top/free/df.
 
 На чистом сервере (Debian/Ubuntu) при первом запуске сам ставит
 и настраивает fail2ban и UFW, потом присылает отчёт в Telegram.
 
-## Что умеет
+Что умеет
 
 - Статус: CPU/RAM/swap/диски/uptime/load/сеть, топ процессов, live-режим
   с автообновлением, kill процесса с подтверждением.
@@ -42,7 +42,7 @@ long polling — веб-сервер, открытый порт и nginx ему 
 деструктивное — через «Ты уверен?» → «Подтвердить». Действия пишутся
 в audit.log, пароли и токены никуда не логируются.
 
-## Требования
+Требования
 
 - Debian/Ubuntu — полная поддержка. CentOS/RHEL/Fedora, Arch, Alpine —
   частичная: функции, завязанные на apt/UFW, ответят «не поддерживается
@@ -51,7 +51,7 @@ long polling — веб-сервер, открытый порт и nginx ему 
 - systemd или OpenRC.
 - Для сборки: Go 1.24+.
 
-## Установка
+Установка
 
     sudo sh install.sh
 
@@ -70,7 +70,7 @@ SHA256), установит файлы в /opt/serverbot, создаст config.
     sudo sh install.sh --uninstall          # config останется
     sudo sh install.sh --uninstall --purge  # полностью
 
-## Ручная установка
+Ручная установка
 
     mkdir -p /opt/serverbot
     cp server-bot /opt/serverbot/
@@ -84,7 +84,7 @@ SHA256), установит файлы в /opt/serverbot, создаст config.
 Токен — у @BotFather (/newbot). Свой Telegram ID — у @userinfobot;
 первый ID в allowed_users — суперадмин.
 
-## Сборка
+Сборка
 
     go build -ldflags="-s -w" -o server-bot ./cmd/bot
 
@@ -92,7 +92,7 @@ SHA256), установит файлы в /opt/serverbot, создаст config.
 
     CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o server-bot ./cmd/bot
 
-## Структура
+Структура
 
     cmd/bot/main.go        точка входа, graceful shutdown
     internal/config        config.yaml: загрузка, валидация, сохранение
@@ -107,6 +107,6 @@ SHA256), установит файлы в /opt/serverbot, создаст config.
     internal/geoip         GeoIP-кэш поверх ip-api.com
     internal/logging       лог с ротацией (10 МБ × 3 файла)
 
-## Лицензия
+Лицензия
 
 MIT
